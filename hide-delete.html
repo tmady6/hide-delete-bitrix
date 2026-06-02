@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hide Bitrix Delete</title>
+</head>
+<body>
+<script>
+(function () {
+  function hideDelete() {
+    try {
+      const doc = window.parent.document;
+
+      const style = doc.createElement("style");
+      style.innerHTML = `
+        .ui-popup-menu-item.--alert {
+          display: none !important;
+          pointer-events: none !important;
+        }
+      `;
+      doc.head.appendChild(style);
+    } catch (e) {
+      console.log("Cannot access Bitrix parent page", e);
+    }
+  }
+
+  hideDelete();
+})();
+</script>
+</body>
+</html>
