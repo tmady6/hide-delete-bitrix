@@ -2,30 +2,24 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Hide Bitrix Delete</title>
+  <script src="//api.bitrix24.com/api/v1/"></script>
 </head>
 <body>
 <script>
-(function () {
-  function hideDelete() {
-    try {
-      const doc = window.parent.document;
-
-      const style = doc.createElement("style");
-      style.innerHTML = `
-        .ui-popup-menu-item.--alert {
-          display: none !important;
-          pointer-events: none !important;
-        }
-      `;
-      doc.head.appendChild(style);
-    } catch (e) {
-      console.log("Cannot access Bitrix parent page", e);
-    }
+BX24.init(function () {
+  try {
+    const style = window.parent.document.createElement("style");
+    style.innerHTML = `
+      .ui-popup-menu-item.--alert {
+        display: none !important;
+        pointer-events: none !important;
+      }
+    `;
+    window.parent.document.head.appendChild(style);
+  } catch (e) {
+    console.log("Cannot access parent document", e);
   }
-
-  hideDelete();
-})();
+});
 </script>
 </body>
 </html>
